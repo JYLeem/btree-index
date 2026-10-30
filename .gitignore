@@ -1,0 +1,8 @@
+build/
+*.class
+.DS_Store
+.idea/
+*.iml
+db-output.txt
+fs-output.txt
+test-results/ci-*

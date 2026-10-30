@@ -1,0 +1,16 @@
+2: MKDIR /home leem => OK /home
+3: MKDIR /home/leem leem => OK /home/leem
+4: MKDIR /home/leem/photos leem => OK /home/leem/photos
+5: CREATE /home/leem/photos/2026-10-01.jpg 1200 leem => OK /home/leem/photos/2026-10-01.jpg
+6: CREATE /home/leem/photos/2026-10-05.jpg 1500 leem => OK /home/leem/photos/2026-10-05.jpg
+7: CREATE /home/leem/photos/2026-10-09.jpg 1800 leem => OK /home/leem/photos/2026-10-09.jpg
+8: CREATE /home/leem/todo.txt 120 leem => OK /home/leem/todo.txt
+9: LS /home/leem => OK 2 [/home/leem/photos, /home/leem/todo.txt]
+10: RANGE /home/leem/photos/2026-10-02 /home/leem/photos/2026-10-10 => OK 2 [/home/leem/photos/2026-10-05.jpg, /home/leem/photos/2026-10-09.jpg]
+11: STAT /home/leem/todo.txt => OK /home/leem/todo.txt FILE id=8 size=120 owner=leem
+12: DELETE /home/leem/photos => FAIL DIRECTORY_NOT_EMPTY /home/leem/photos
+13: DELETE /home/leem/photos/2026-10-01.jpg => OK /home/leem/photos/2026-10-01.jpg
+14: FIND /home => OK 5 [/home/leem, /home/leem/photos, /home/leem/photos/2026-10-05.jpg, /home/leem/photos/2026-10-09.jpg, /home/leem/todo.txt]
+15: CREATE /home/leem/todo.txt 1 leem => FAIL ALREADY_EXISTS /home/leem/todo.txt
+16: CREATE relative.txt 1 leem => FAIL INVALID_PATH relative.txt
+# summary ok=12 fail=3 error=0 entries=7 indexHeight=2

@@ -1,0 +1,10 @@
+ID	결과	심은 결함	테스트 결과	첫 실패
+M1	KILLED	재분배(오른쪽) 시 자식 포인터를 옮기지 않음	PASS 126 / FAIL 12 / NOT RUN 0	INV-01
+M2	KILLED	병합 후 부모의 마지막 자식 슬롯을 비우지 않음	PASS 159 / FAIL 25 / NOT RUN 0	INV-01
+M3	KILLED	upperBound 가 lowerBound 처럼 동작 (배타적 하한이 포함으로 바뀜)	PASS 123 / FAIL 14 / NOT RUN 0	DIFF-01
+M4	KILLED	delete 의 존재 확인 제거 + 예외 무시 (size 도 어긋남)	PASS 138 / FAIL 28 / NOT RUN 0	INV-01
+M5	KILLED	자식 분할 후 내려갈 자식 위치를 보정하지 않음	PASS 122 / FAIL 30 / NOT RUN 0	INV-01
+M6	KILLED	경우 2a 조건 y.n >= t 를 y.n > t 로 (병합 시 넘침)	PASS 104 / FAIL 8 / NOT RUN 0	CRASH(예외)
+M7	KILLED	범위 검색 limit 비교 off-by-one	PASS 166 / FAIL 18 / NOT RUN 0	DIFF-01
+M8	KILLED	리프에서 키 제거 후 마지막 슬롯을 비우지 않음	PASS 156 / FAIL 28 / NOT RUN 0	INV-01
+M9	KILLED	R-001 원래 코드 그대로 복원	PASS 179 / FAIL 5 / NOT RUN 0	PBT-01 (EDGE-03, ADV-11, R-001 도 실패)

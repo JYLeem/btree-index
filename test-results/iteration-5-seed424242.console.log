@@ -1,0 +1,240 @@
+Picked up JAVA_TOOL_OPTIONS: 
+B-Tree 테스트 실행: label=iteration-5-seed424242, seed=424242, 시간 상한 300초
+
+=== 1. Invariant checker test ===
+  [PASS] INV-01       t=2 무작위 삽입/삭제 후 매 연산마다 불변식 검사
+  [PASS] INV-02       t=3 무작위 삽입/삭제 후 매 연산마다 불변식 검사
+  [PASS] INV-03       t=4 무작위 삽입/삭제 후 매 연산마다 불변식 검사
+  [PASS] INV-04       t=5 무작위 삽입/삭제 후 매 연산마다 불변식 검사
+  [PASS] INV-05       t=6 무작위 삽입/삭제 후 매 연산마다 불변식 검사
+  [PASS] INV-M00      정상 기준 스냅샷은 위반 없음
+  [PASS] INV-M01      검사기가 손상을 검출: 노드 내 키 순서 뒤바뀜
+  [PASS] INV-M02      검사기가 손상을 검출: 비루트 노드 키 부족 (t=3, 키 1개)
+  [PASS] INV-M03      검사기가 손상을 검출: 노드 키 초과 (t=2, 키 4개)
+  [PASS] INV-M04      검사기가 손상을 검출: 자식 키가 구분자 구간 밖
+  [PASS] INV-M05      검사기가 손상을 검출: 내부 노드 자식 수 ≠ 키 수+1
+  [PASS] INV-M06      검사기가 손상을 검출: 리프 깊이 불일치
+  [PASS] INV-M07      검사기가 손상을 검출: 키 없는 내부 루트
+  [PASS] INV-M08      검사기가 손상을 검출: 같은 노드 id 가 두 번 참조됨
+  [PASS] INV-M09      검사기가 손상을 검출: 미사용 슬롯에 참조 잔존
+  [PASS] INV-M10      검사기가 손상을 검출: 기록된 size 와 실제 키 수 불일치
+  [PASS] INV-M11      검사기가 손상을 검출: 키-값 대응 손상
+
+=== 2. Differential test ===
+  [PASS] DIFF-01      t=2, 키 0~63 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-02      t=2, 키 0~4999 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-03      t=2, 키 전체 int 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-04      t=3, 키 0~63 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-05      t=3, 키 0~4999 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-06      t=3, 키 전체 int 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-07      t=4, 키 0~63 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-08      t=4, 키 0~4999 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-09      t=4, 키 전체 int 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-10      t=7, 키 0~63 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-11      t=7, 키 0~4999 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-12      t=7, 키 전체 int 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-13      t=16, 키 0~63 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-14      t=16, 키 0~4999 무작위 연산이 TreeMap/TreeSet 과 일치
+  [PASS] DIFF-15      t=16, 키 전체 int 무작위 연산이 TreeMap/TreeSet 과 일치
+
+=== 3. Stateful property-based test ===
+  [PASS] PBT-01       무작위 명령 시퀀스에서 속성 P1~P5 성립
+  [PASS] PBT-02       생성된 명령 수 (실행 규모 기록)
+  [PASS] PBT-03       축소기 자체 검증: 거짓 속성의 반례를 최소로 줄임
+
+=== 4. Edge case test ===
+  [PASS] EDGE-01      빈 트리 검색/삭제/범위/순회
+  [PASS] EDGE-02      단일 키 삽입·검색·삭제
+  [PASS] EDGE-03      존재하지 않는 키의 검색·삭제는 null, 구조 불변
+  [PASS] EDGE-04      루트 분할: 가득 찬 루트(2t-1)에 삽입
+  [PASS] EDGE-05      루트 축소: 병합으로 루트가 비면 높이 감소
+  [PASS] EDGE-06      최소 키 노드 삭제 → 오른쪽 형제 재분배
+  [PASS] EDGE-07      최소 키 노드 삭제 → 왼쪽 형제 재분배
+  [PASS] EDGE-08      최소 키 노드 삭제 → 형제와 병합(+루트 축소)
+  [PASS] EDGE-09      내부 키 삭제 2a: 왼쪽 자식 ≥ t → 선행자로 대체
+  [PASS] EDGE-10      내부 키 삭제 2b: 오른쪽 자식 ≥ t → 후속자로 대체
+  [PASS] EDGE-11      내부 키 삭제 2c: 양쪽 자식 t-1 → 병합 후 삭제
+  [PASS] EDGE-12      중복 키 삽입 거부: 값·구조 유지
+  [PASS] EDGE-13      null 키/값과 잘못된 차수
+  [PASS] EDGE-14      정수 최솟값·최댓값 키
+  [PASS] EDGE-15      범위 검색 경계 조건
+  [PASS] EDGE-16      큰 차수 t=64: 2t-1=127개까지 루트 하나
+  [PASS] EDGE-17      같은 키 삽입/삭제 1,000회 반복
+
+=== 5. Structural coverage test ===
+  [PASS] COV-01       경로 실행 여부: ROOT_SPLIT (루트 변경-분할)
+         ROOT_SPLIT                            2,889회
+  [PASS] COV-02       경로 실행 여부: LEAF_SPLIT (노드 분할)
+         LEAF_SPLIT                            6,946회
+  [PASS] COV-03       경로 실행 여부: INTERNAL_SPLIT (노드 분할)
+         INTERNAL_SPLIT                       13,369회
+  [PASS] COV-04       경로 실행 여부: LEAF_MERGE (병합)
+         LEAF_MERGE                            5,202회
+  [PASS] COV-05       경로 실행 여부: INTERNAL_MERGE (병합)
+         INTERNAL_MERGE                       12,498회
+  [PASS] COV-06       경로 실행 여부: BORROW_LEFT_LEAF (키 재분배)
+         BORROW_LEFT_LEAF                      3,640회
+  [PASS] COV-07       경로 실행 여부: BORROW_LEFT_INTERNAL (키 재분배)
+         BORROW_LEFT_INTERNAL                 12,640회
+  [PASS] COV-08       경로 실행 여부: BORROW_RIGHT_LEAF (키 재분배)
+         BORROW_RIGHT_LEAF                     2,239회
+  [PASS] COV-09       경로 실행 여부: BORROW_RIGHT_INTERNAL (키 재분배)
+         BORROW_RIGHT_INTERNAL                10,315회
+  [PASS] COV-10       경로 실행 여부: ROOT_SHRINK (루트 변경-축소)
+         ROOT_SHRINK                           2,866회
+  [PASS] COV-11       경로 실행 여부: DELETE_FROM_LEAF (리프 키 삭제)
+         DELETE_FROM_LEAF                     38,576회
+  [PASS] COV-12       경로 실행 여부: DELETE_INTERNAL_BY_PREDECESSOR (내부 노드 키 삭제)
+         DELETE_INTERNAL_BY_PREDECESSOR        6,513회
+  [PASS] COV-13       경로 실행 여부: DELETE_INTERNAL_BY_SUCCESSOR (내부 노드 키 삭제)
+         DELETE_INTERNAL_BY_SUCCESSOR          3,342회
+  [PASS] COV-14       경로 실행 여부: DELETE_INTERNAL_BY_MERGE (내부 노드 키 삭제)
+         DELETE_INTERNAL_BY_MERGE              2,524회
+  [PASS] COV-15       경로 실행 여부: DUPLICATE_INSERT_REJECTED (정책 분기)
+         DUPLICATE_INSERT_REJECTED            46,121회
+  [PASS] COV-16       경로 실행 여부: DELETE_MISSING_KEY (정책 분기)
+         DELETE_MISSING_KEY                   51,426회
+  [PASS] COV-F1       비루트 리프의 모든 채움 수준 관측
+  [PASS] COV-F2       비루트 내부 노드의 모든 채움 수준 관측
+  [PASS] COV-F3       루트의 모든 채움 수준 관측
+  [PASS] COV-F4       높이 1~5 관측 (루트 분할·축소가 여러 층에서 발생)
+
+=== 6. Adversarial sequence test ===
+  [PASS] ADV-01       오름차순 삽입
+         (연산 6000회, 관측 최대 높이 10)
+  [PASS] ADV-02       내림차순 삽입
+         (연산 6000회, 관측 최대 높이 10)
+  [PASS] ADV-03       오름차순 삽입 후 역순(내림차순) 삭제
+         (연산 12000회, 관측 최대 높이 10)
+  [PASS] ADV-04       내림차순 삽입 후 역순(오름차순) 삭제
+         (연산 12000회, 관측 최대 높이 10)
+  [PASS] ADV-05       반복적인 삽입과 삭제 (무작위 키, 10라운드)
+         (연산 24000회, 관측 최대 높이 8)
+  [PASS] ADV-06       분할·병합 유도: 같은 키 삽입 직후 삭제 반복
+         (연산 30000회, 관측 최대 높이 10)
+  [PASS] ADV-07       분할·병합 유도: 지그재그 삽입 후 가운데부터 삭제
+         (연산 12006회, 관측 최대 높이 10)
+  [PASS] ADV-08       루트 키 저격: 현재 루트의 키만 삭제
+         (연산 12000회, 관측 최대 높이 10)
+  [PASS] ADV-09       구분자 저격: 내부 노드 키만 골라 삭제 후 재삽입
+         (연산 18000회, 관측 최대 높이 8)
+  [PASS] ADV-10       톱니파: 대량 삽입 후 90% 삭제 × 10
+         (연산 116011회, 관측 최대 높이 9)
+  [PASS] ADV-11       무효 연산 폭주: 중복 삽입·없는 키 삭제·검색 (구조와 이벤트 수 불변)
+         (연산 24000회, 관측 최대 높이 10)
+
+=== 7. DB 인덱스 모듈 기능 테스트 ===
+  [PASS] DB-C01       명령 처리기 출력
+  [PASS] DB-C02       명령 처리기 출력
+  [PASS] DB-C03       명령 처리기 출력
+  [PASS] DB-C04       명령 처리기 출력
+  [PASS] DB-C05       명령 처리기 출력
+  [PASS] DB-C06       명령 처리기 출력
+  [PASS] DB-C07       명령 처리기 출력
+  [PASS] DB-C08       명령 처리기 출력
+  [PASS] DB-C09       명령 처리기 출력
+  [PASS] DB-C10       명령 처리기 출력
+  [PASS] DB-C11       명령 처리기 출력
+  [PASS] DB-C12       명령 처리기 출력
+  [PASS] DB-C13       명령 처리기 출력
+  [PASS] DB-C14       명령 처리기 출력
+  [PASS] DB-C15       명령 처리기 출력
+  [PASS] DB-C16       명령 처리기 출력
+  [PASS] DB-C17       명령 처리기 출력
+  [PASS] DB-C18       명령 처리기 출력
+  [PASS] DB-C19       명령 처리기 출력
+  [PASS] DB-C20       명령 처리기 출력
+  [PASS] DB-R01       BETWEEN 10 AND 30 결과가 order_id 오름차순
+  [PASS] DB-R02       SCAN 이 전체를 오름차순으로 반환
+  [PASS] DB-R03       삭제된 힙 슬롯 재사용
+  [PASS] DB-M01       무작위 INSERT/DELETE/SELECT 5,000회가 TreeMap 모델과 일치
+  [PASS] DB-M02       인덱스 항목 수 = 힙 레코드 수 = 모델 크기
+  [PASS] DB-M03       작업 후 기본키 인덱스 B-Tree 불변식
+
+=== 8. FS 인덱스 모듈 기능 테스트 ===
+  [PASS] FS-C01       명령 처리기 출력
+  [PASS] FS-C02       명령 처리기 출력
+  [PASS] FS-C03       명령 처리기 출력
+  [PASS] FS-C04       명령 처리기 출력
+  [PASS] FS-C05       명령 처리기 출력
+  [PASS] FS-C06       명령 처리기 출력
+  [PASS] FS-C07       명령 처리기 출력
+  [PASS] FS-C08       명령 처리기 출력
+  [PASS] FS-C09       명령 처리기 출력
+  [PASS] FS-C10       명령 처리기 출력
+  [PASS] FS-C11       명령 처리기 출력
+  [PASS] FS-C12       명령 처리기 출력
+  [PASS] FS-C13       명령 처리기 출력
+  [PASS] FS-C14       명령 처리기 출력
+  [PASS] FS-C15       명령 처리기 출력
+  [PASS] FS-C16       명령 처리기 출력
+  [PASS] FS-C17       명령 처리기 출력
+  [PASS] FS-C18       명령 처리기 출력
+  [PASS] FS-C19       명령 처리기 출력
+  [PASS] FS-C20       명령 처리기 출력
+  [PASS] FS-C21       명령 처리기 출력
+  [PASS] FS-C22       명령 처리기 출력
+  [PASS] FS-C23       명령 처리기 출력
+  [PASS] FS-C24       명령 처리기 출력
+  [PASS] FS-C25       명령 처리기 출력
+  [PASS] FS-C26       명령 처리기 출력
+  [PASS] FS-C27       명령 처리기 출력
+  [PASS] FS-C28       명령 처리기 출력
+  [PASS] FS-C29       명령 처리기 출력
+  [PASS] FS-C30       명령 처리기 출력
+  [PASS] FS-P01       경로 규칙 유틸리티
+  [PASS] FS-M01       무작위 create 3,000 / delete 1,200 의 결과 코드
+  [PASS] FS-M02       경로 항목 수 = inode 수 = 기대 항목 수
+  [PASS] FS-M03       모든 디렉터리의 LS 결과 = 브루트포스
+  [PASS] FS-M04       모든 디렉터리의 FIND 결과 = 브루트포스
+  [PASS] FS-M05       경로 검색과 파일 ID 검색이 같은 메타데이터를 가리킴
+  [PASS] FS-M06       작업 후 경로 인덱스 B-Tree 불변식
+
+=== 9. 회귀 테스트 ===
+  [PASS] R-001        없는 키 delete 가 구조를 바꾸지 않음 (최소 반례)
+  [PASS] R-002a       매우 큰 최소 차수는 IllegalArgumentException
+  [PASS] R-002b       허용 상한(65536)의 최소 차수는 생성 가능
+
+=== 10. 애플리케이션 E2E 테스트 ===
+# summary ok=11 fail=3 error=2 rows=5 indexHeight=1 -> /home/claude/btree-project/build/e2e/db-output.txt
+  [PASS] E2E-DB-N     출력 줄 수
+  [PASS] E2E-DB-L01   출력 줄 일치
+  [PASS] E2E-DB-L02   출력 줄 일치
+  [PASS] E2E-DB-L03   출력 줄 일치
+  [PASS] E2E-DB-L04   출력 줄 일치
+  [PASS] E2E-DB-L05   출력 줄 일치
+  [PASS] E2E-DB-L06   출력 줄 일치
+  [PASS] E2E-DB-L07   출력 줄 일치
+  [PASS] E2E-DB-L08   출력 줄 일치
+  [PASS] E2E-DB-L09   출력 줄 일치
+  [PASS] E2E-DB-L10   출력 줄 일치
+  [PASS] E2E-DB-L11   출력 줄 일치
+  [PASS] E2E-DB-L12   출력 줄 일치
+  [PASS] E2E-DB-L13   출력 줄 일치
+  [PASS] E2E-DB-L14   출력 줄 일치
+  [PASS] E2E-DB-L15   출력 줄 일치
+  [PASS] E2E-DB-L16   출력 줄 일치
+  [PASS] E2E-DB-L17   출력 줄 일치
+# summary ok=12 fail=3 error=0 entries=7 indexHeight=2 -> /home/claude/btree-project/build/e2e/fs-output.txt
+  [PASS] E2E-FS-N     출력 줄 수
+  [PASS] E2E-FS-L01   출력 줄 일치
+  [PASS] E2E-FS-L02   출력 줄 일치
+  [PASS] E2E-FS-L03   출력 줄 일치
+  [PASS] E2E-FS-L04   출력 줄 일치
+  [PASS] E2E-FS-L05   출력 줄 일치
+  [PASS] E2E-FS-L06   출력 줄 일치
+  [PASS] E2E-FS-L07   출력 줄 일치
+  [PASS] E2E-FS-L08   출력 줄 일치
+  [PASS] E2E-FS-L09   출력 줄 일치
+  [PASS] E2E-FS-L10   출력 줄 일치
+  [PASS] E2E-FS-L11   출력 줄 일치
+  [PASS] E2E-FS-L12   출력 줄 일치
+  [PASS] E2E-FS-L13   출력 줄 일치
+  [PASS] E2E-FS-L14   출력 줄 일치
+  [PASS] E2E-FS-L15   출력 줄 일치
+  [PASS] E2E-FS-L16   출력 줄 일치
+  [PASS] E2E-ERR1     입력 파일이 없으면 오류 메시지 출력, 출력 파일 생성 안 함
+  [PASS] E2E-ERR2     잘못된 최소 차수 인자 처리
+  [PASS] E2E-ERR3     범위를 넘는 최소 차수 인자도 비정상 종료 없이 처리 (R-002)
+
+총 PASS 187 / FAIL 0 / NOT RUN 0 (47.68초) → /home/claude/btree-project/test-results/iteration-5-seed424242.md

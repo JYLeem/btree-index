@@ -1,0 +1,16 @@
+# 사례 B 샘플: 경로 → 파일 ID 인덱스
+MKDIR /home leem
+MKDIR /home/leem leem
+MKDIR /home/leem/photos leem
+CREATE /home/leem/photos/2026-10-01.jpg 1200 leem
+CREATE /home/leem/photos/2026-10-05.jpg 1500 leem
+CREATE /home/leem/photos/2026-10-09.jpg 1800 leem
+CREATE /home/leem/todo.txt 120 leem
+LS /home/leem
+RANGE /home/leem/photos/2026-10-02 /home/leem/photos/2026-10-10
+STAT /home/leem/todo.txt
+DELETE /home/leem/photos
+DELETE /home/leem/photos/2026-10-01.jpg
+FIND /home
+CREATE /home/leem/todo.txt 1 leem
+CREATE relative.txt 1 leem

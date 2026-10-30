@@ -1,0 +1,51 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      mutation:
+        description: "변이 테스트(결함 9종)도 실행"
+        type: boolean
+        default: false
+
+jobs:
+  test:
+    name: 전체 테스트 (시드 3개)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        seed: [20261024, 777, 424242]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: 빌드 + 테스트
+        run: ./build-and-test.sh ci-${{ matrix.seed }} ${{ matrix.seed }}
+      - name: 결과표 업로드
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.seed }}
+          path: test-results/ci-${{ matrix.seed }}.md
+
+  mutation:
+    name: 변이 테스트
+    if: github.event_name == 'workflow_dispatch' && inputs.mutation
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - run: python3 mutation-test.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mutation
+          path: test-results/mutation/
